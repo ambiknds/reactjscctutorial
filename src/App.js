@@ -49,7 +49,6 @@ function App() {
         />
         <div className='flex flex-wrap justify-center'>
           {employees.map((employee) => {
-              {/* console.log(uuidv4()) */}
             return (
               <Employee 
               key={uuidv4()}
