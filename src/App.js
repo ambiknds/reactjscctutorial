@@ -1,6 +1,7 @@
 import './index.css';
 import Employee from './components/Employee';
 import {useState} from 'react';
+import AddEmployee from './components/AddEmployee';
 import {v4 as uuidv4} from 'uuid';
 
 function App() {
@@ -43,9 +44,11 @@ function App() {
       }
     ]
   )
+  // update employee inside of app js
   function updateEmployee(id, newName, newRole){
     const updatedEmployees = employees.map((employee) =>{
-      if(id == employee.id) {
+      if(id === employee.id) {
+        // return new employee if update
           return {...employee , name:newName, role:newRole}
       }
       return employee
@@ -53,6 +56,15 @@ function App() {
     setEmployees(updatedEmployees)
   }
 
+  function newEmployee(name, role, img) {
+    const newEmployee = {
+      id: uuidv4(),
+      name: name,
+      role: role,
+      img: img,
+    }
+    setEmployees([...employees, newEmployee])
+  }
   const showEmployees = true;
   return (
     <div className="App bg-slate-200">
@@ -77,9 +89,10 @@ function App() {
             )
           })}
         </div>
+        <AddEmployee newEmployee={newEmployee} />
       </>
       ) : (
-       <p>You cannot see the employempmes</p>
+       <p>You cannot see the employees</p>
        )}
     </div>
   );
