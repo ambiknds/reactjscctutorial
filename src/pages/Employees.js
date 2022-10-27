@@ -68,7 +68,7 @@ function Employees() {
   }
   const showEmployees = true;
   return (
-    <div className="App bg-slate-200 min-h-screen">
+    <div className="">
     {/* employee list */}
     {showEmployees ? (
       <>  
@@ -77,7 +77,7 @@ function Employees() {
             setRole(e.target.value);
           }}
         /> */}
-        <div className='flex flex-wrap justify-center my-2'>
+        <div className='flex flex-wrap justify-center'>
           {employees.map((employee) => {
             const editEmployee = <EditEmployee 
             id={employee.id}
