@@ -4,6 +4,7 @@ import {useState} from 'react';
 import AddEmployee from './components/AddEmployee';
 import {v4 as uuidv4} from 'uuid';
 import EditEmployee from './components/EditEmployee';
+import Header from './components/Header';
 
 function App() {
   // const [role, setRole] = useState('dev');
@@ -68,7 +69,10 @@ function App() {
   }
   const showEmployees = true;
   return (
-    <div className="App bg-slate-200">
+    <div className="App bg-slate-200 min-h-screen">
+    {/* navigation */}
+      <Header/>
+    {/* employee list */}
     {showEmployees ? (
       <>  
         {/* <input type = "text"
@@ -76,7 +80,7 @@ function App() {
             setRole(e.target.value);
           }}
         /> */}
-        <div className='flex flex-wrap justify-center'>
+        <div className='flex flex-wrap justify-center my-2'>
           {employees.map((employee) => {
             const editEmployee = <EditEmployee 
             id={employee.id}
