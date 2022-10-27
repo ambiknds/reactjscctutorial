@@ -15,7 +15,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header() {
+export default function Header(props) {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -134,6 +134,7 @@ export default function Header() {
               ))}
             </div>
           </Disclosure.Panel>
+          {props.children}
         </>
       )}
     </Disclosure>
