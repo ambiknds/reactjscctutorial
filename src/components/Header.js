@@ -8,13 +8,13 @@ import { NavLink} from 'react-router-dom'
 const navigation = [
   { name: 'Employees', href: '/Employees'},
   { name: 'Customers', href: '/Customers'},
-  { name: 'Projects', href: '/other'},
+  { name: 'Dictionary', href: '/Dictionary'},
   { name: 'Calendar', href: '/other2'},
 ]
 
-// function classNames(...classes) {
-//   return classes.filter(Boolean).join(' ')
-// }
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export default function Header(props) {
   return (
