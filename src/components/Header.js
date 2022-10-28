@@ -1,7 +1,7 @@
 // code taken from https://tailwindui.com/components/application-ui/navigation/navbars
 // install @headlessui/react and @heroicons/react
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Disclosure} from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink} from 'react-router-dom'
 // import logo from '/imagea/logo.png'
@@ -12,9 +12,9 @@ const navigation = [
   { name: 'Calendar', href: '/other2'},
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(' ')
+// }
 
 export default function Header(props) {
   return (
