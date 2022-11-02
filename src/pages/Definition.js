@@ -7,22 +7,38 @@ function Definition() {
     const [word, setWord] = useState();
     // console.log(useParams())
     const [notFound, setNotFound] = useState();
+    const [error, setError] = useState(false);
     let {search} = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + search)
+        // const url = 'https://httpstat.us/401'
+        const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + search;
+        fetch(url)
             .then((response) => {
+              console.log(response.status)
               if(response.status === 404) {
                 setNotFound(true);
                 // navigate('/404')
                 // console.log(response.status)
+              }else if (response.status === 401) {
+                  navigate('/login');
+              }else if (response.status === 500) {
+                  setError(true)
+              }
+              if(!response.ok){
+                setError(true);
+
+                throw new error('Something went wrong')
               }
               return response.json();
             })
             .then((data) => {
                 setWord(data[0].meanings);
-                console.log(data[0].meanings);
+                // console.log(data[0].meanings);
 
+        })
+        .catch((e) => {
+          console.log(e.message);
         });
     }, []);
 
@@ -30,6 +46,14 @@ function Definition() {
     return (
       <>
         <NotFound/>
+        <Link to='/dictionary'>Search another</Link>
+      </>
+    );
+  }
+  if (error === true) {
+    return (
+      <>
+        <p>Something went wrong, try again</p>
         <Link to='/dictionary'>Search another</Link>
       </>
     );
