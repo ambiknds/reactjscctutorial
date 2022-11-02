@@ -1,32 +1,11 @@
-import {useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
-function Dictionary() {
-    
-    const [word,setWord] = useState('');
-  const navigate = useNavigate();
+import React from 'react'
+import DefinitionSearch from '../components/DefinitionSearch'
 
-    useEffect(() => {
-    })
 
-    //no depandency array, update any state change
-    //pass empty depend attay, execute once
-    //passing state data, only execute when variable changes
+export default function Dictionary() {
   return (
-    <>
-        <input 
-          type='text' 
-          onChange={(e) =>{
-            setWord(e.target.value)
-            
-        }} />
-        <button onClick={() => {
-          navigate('/definition/' + word, {replace: true})
-          // console.log('click')
-        }}
-        
-        >Search</button>
-    </>
+    <div className='flex justify-center'>
+      <DefinitionSearch/>
+    </div>
   )
 }
-
-export default Dictionary
