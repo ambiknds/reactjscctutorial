@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 
 function Definition() {
     const [word, setWord] = useState();
+    // console.log(useParams())
+    let {search} = useParams();
     useEffect(() => {
-        fetch('https://api.dictionaryapi.dev/api/v2/entries/en/hello')
+        fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + search)
             .then((response) => response.json())
             .then((data) => {
                 setWord(data[0].meanings);
@@ -14,17 +17,19 @@ function Definition() {
     }, []);
   return (
     <>
-        <h1>Here is a Definition of: {word} </h1>
-        {word
-            ? word.map((meaning) => {
-                return (
-                    <p key={uuidv4}>
-                        {meaning.partOfSpeect + ' '};
-                        {meaning.definitions[0].definition}
-                    </p>
-                );
+        <h1>Here is a Definition:</h1>
+        {word ? word.map((meaning) => {
+          return (
+          <p key={uuidv4}>
+            {meaning.partOfSpeech + ': '}
+            {meaning.definitions[0].definition}
+            {/* {console.log(meaning.definitions[0].definition)} */}
+          </p>
+        )
         })
-        : <p>Unable to find your search word.</p>}
+        : <p>Unable to load word</p>
+        }
+        
     </>
   );
 }
