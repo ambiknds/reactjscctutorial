@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-
+import {Link} from 'react-router-dom'
 function Customers() {
   const [customers, setCustomers] = useState();
   useEffect(() => {
@@ -18,15 +18,14 @@ function Customers() {
       {customers ?
         customers.map((customer) => {
         return (
-          <div>
-            <table >
-              <tr>
-                <td className='border-black border-2'>{customer.name}</td>
-                <td className='border-black border-2'>{customer.industry}</td>
-              </tr>
-            </table>
-          </div>
-        )
+          <ul>
+            <li>
+              <Link to={"/customers/" + customer.id}>{customer.name}</Link>
+            </li>
+          </ul>
+          )
+        
+          
       })
       : <p>Unable to load customer</p>
       }
