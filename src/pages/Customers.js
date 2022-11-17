@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import { baseUrl } from '../shared';
 function Customers() {
   const [customers, setCustomers] = useState();
   useEffect(() => {
-    console.log('Fetching...')
-    fetch('http://localhost:8000/api/customers/')
+    // console.log('Fetching...')
+    const url = baseUrl + 'api/customers/'
+    fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -12,7 +14,7 @@ function Customers() {
     })
   }, [])
   return (
-    <div>
+    <div className='flex flex-col justify-items-center content-center'>
       <h1>Here are our Customers</h1>
       
       {customers ?

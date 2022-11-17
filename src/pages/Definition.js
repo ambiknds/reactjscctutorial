@@ -76,7 +76,7 @@ function Definition() {
               <p>Search Again:</p>
               <DefinitionSearch/>
               </>
-        : <p>Loading...</p>
+        : <p>The word you are searching was not found.</p>
         }
         
     </>
