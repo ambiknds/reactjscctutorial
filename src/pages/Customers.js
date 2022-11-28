@@ -16,21 +16,22 @@ function Customers() {
   return (
     <div className='flex flex-col justify-items-center content-center'>
       <h1>Here are our Customers</h1>
-      
+      <ul>
       {customers ?
         customers.map((customer) => {
         return (
-          <ul>
-            <li>
+          
+            <li key={customer.id}>
               <Link to={"/customers/" + customer.id}>{customer.name}</Link>
             </li>
-          </ul>
-          )
+          
+          );
         
           
       })
       : <p>Unable to load customer</p>
       }
+      </ul>
     </div>
   )
 }

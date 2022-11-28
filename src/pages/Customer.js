@@ -23,7 +23,8 @@ export default function Customer() {
         .then((data) => {
             setCustomer(data.customer)
         })
-    },[])
+    },[]);
+    
     return (
         <div>
             {notFound ? <p>The customer with id {id} was not found.</p>: null}
@@ -31,7 +32,27 @@ export default function Customer() {
             <p>{customer.id}</p>
             <p>{customer.name}</p>
             <p>{customer.industry}</p>
-            </div>:null}
+        </div>:null}
+            <button className="bg-teal-300"
+            onClick={(e) => {
+                const url = baseUrl + 'api/customers/' + id;
+                fetch(url, { method: 'DELETE', headers: {
+                    'Content-Type' : 'application/json'
+                }})
+                .then((response) => {
+                    if(!response.ok) {
+                        throw new Error('Something Went Wrong.')
+                    }
+                    //assume thing went well
+                    navigate('/customers')
+                })
+
+                .catch((e) => {
+                    console.log(e)
+                })
+                
+            }}>Delete</button>
+            <br/>
             <Link to='/customers/'>Go Back</Link>
         </div>
     )
